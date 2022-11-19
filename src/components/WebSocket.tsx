@@ -10,12 +10,15 @@ const PriceDisplay: FC = () => {
 
     // connect to websocket and send request for BTC
     ws.onopen = () => {
-      ws.send('{"op": "subscribe", "args": ["publicTrade.BTCUSDT"]}');
+      ws.send(
+        '{"op": "subscribe", "args": ["publicTrade.BTCUSDT", "publicTrade.ETHUSDT"]}'
+      );
     };
 
     // retrieve BTC price on trade
     ws.onmessage = (event) => {
       const trade = JSON.parse(event.data);
+      console.log(event.data);
       setPrice(trade.data[0].p);
     };
   }, []);
