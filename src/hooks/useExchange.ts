@@ -23,6 +23,7 @@ function useExchange(tokens: string[]): tokenSubscription {
     // connect to websocket and subscribe to tokens
     ws.onopen = () => {
       console.log("socket opened");
+
       tokens.map((token) => {
         ws.send(
           `{"op": "subscribe", "args": ["publicTrade.${token.toUpperCase()}"]}`
@@ -32,7 +33,10 @@ function useExchange(tokens: string[]): tokenSubscription {
 
     ws.onmessage = (event) => {
       //extract trade data
-      let parsedTrade = JSON.parse(event.data).data[0];
+      let eventData = JSON.parse(event.data);
+      console.log(eventData);
+
+      let parsedTrade = eventData.data[0];
 
       //extract symbol and build new trade object
       let symbol = parsedTrade.s;
