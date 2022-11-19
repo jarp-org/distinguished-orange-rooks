@@ -12,11 +12,7 @@ interface props {
   tokens: string[];
 }
 
-const argMax = (obj: tokenSubscription) => {
-  Object.values(obj).reduce((a, r) => (a.time > r.time ? a : r));
-};
-
-const LineChart: FC<props> = ({ tokens }) => {
+const BubbleChart: FC<props> = ({ tokens }) => {
   const currData = useExchange(tokens);
 
   const [liveData, setLiveData] = useState<(string | number)[][]>([]);
@@ -27,16 +23,11 @@ const LineChart: FC<props> = ({ tokens }) => {
     let d = new Date(currData[tokens[0]].time);
     const temp = [d.toLocaleTimeString(), ...tokens.map(() => 0)];
 
-    if (loading) {
-      console.log("from effect", currData);
-      return;
-    }
+    if (loading) return;
 
     tokens.forEach((token) => {
       temp[tokens.indexOf(token) + 1] = currData[token].price;
     });
-
-    console.log(liveData);
 
     setLiveData((prev) => {
       return [...prev, temp];
@@ -46,7 +37,7 @@ const LineChart: FC<props> = ({ tokens }) => {
   return (
     <div>
       {loading ? (
-        <div>loading...</div>
+        <div className='mx-24'>loading...</div>
       ) : (
         <Chart
           chartType='LineChart'
@@ -60,4 +51,4 @@ const LineChart: FC<props> = ({ tokens }) => {
   );
 };
 
-export default LineChart;
+export default BubbleChart;
