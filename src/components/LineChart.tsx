@@ -27,7 +27,9 @@ const LineChart: FC = () => {
     setInterval(() => {
       setLiveData((prev) => [...prev, [i, getRandom(250, 1500)]]);
       i++;
-      if (i == 50) clearInterval(i);
+      if (i == 50) {
+        clearInterval(i);
+      }
     }, 1000);
   }, []);
 
