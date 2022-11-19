@@ -1,4 +1,6 @@
 ---
+import Header from "../components/Header";
+
 export interface Props {
   title: string;
 }
@@ -16,7 +18,7 @@ const { frontmatter } = Astro.props;
     <title>{frontmatter.title}</title>
   </head>
   <body>
-    <h1>this is the global header</h1>
+    <Header />
     <slot />
   </body>
 </html>
