@@ -3,6 +3,7 @@ interface trade {
   direction: string;
   quantity: number;
   price: number;
+  time: number;
 }
 
 interface tokenSubscription {

@@ -10,6 +10,7 @@ function useExchange(tokens: string[]): tokenSubscription {
       direction: "",
       quantity: NaN,
       price: NaN,
+      time: 0,
     };
   });
 
@@ -43,8 +44,9 @@ function useExchange(tokens: string[]): tokenSubscription {
       let newTrade: trade = {
         symbol: parsedTrade.s,
         direction: parsedTrade.L,
-        quantity: parsedTrade.v,
-        price: parsedTrade.p,
+        quantity: parseFloat(parsedTrade.v),
+        price: parseFloat(parsedTrade.p),
+        time: parseInt(parsedTrade.T),
       };
 
       setData((prev) => {
