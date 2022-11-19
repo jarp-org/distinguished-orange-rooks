@@ -1,6 +1,5 @@
 import LineChart from "./LineChart";
-import BubbleChart from "./BubbleChart";
-import SampleBubbles from "./SampleBubbles";
+import SampleBubbles from "./BubbleChart44";
 import Dropdown from "./Dropdown";
 import useQueryParam from "../hooks/useQueryParams";
 
