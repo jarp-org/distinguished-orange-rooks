@@ -1,6 +1,6 @@
 import { FC, useState, useEffect } from "react";
 import { Chart } from "react-google-charts";
-import useExchange from "../hooks/useExchange";
+import useExchange from "../../hooks/useExchange";
 
 const options = {
   title: "Company Performance",
@@ -49,9 +49,9 @@ const LineChart: FC<props> = ({ tokens }) => {
         <div>loading...</div>
       ) : (
         <Chart
-          chartType='LineChart'
-          width='100%'
-          height='400px'
+          chartType="LineChart"
+          width="100%"
+          height="400px"
           data={[["time", ...tokens], ...liveData]}
           options={options}
         />
