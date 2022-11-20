@@ -7,7 +7,8 @@ type feedState = [
 
 const useLiveFeed = (
   initial: (string | number)[][],
-  maxViewSize: number
+  maxViewSize: number,
+  tokens: string[]
 ): feedState => {
   //create state
   const [liveData, setLiveData] = useState<(string | number)[][]>(initial);
@@ -20,6 +21,10 @@ const useLiveFeed = (
       });
     }
   }, [maxViewSize]);
+
+  useEffect(() => {
+    setLiveData(initial);
+  }, [tokens]);
 
   return [liveData, setLiveData];
 };
