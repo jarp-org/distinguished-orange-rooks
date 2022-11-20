@@ -35,7 +35,6 @@ function useExchange(tokens: string[]): tokenSubscription {
     ws.onmessage = (event) => {
       //extract trade data
       let eventData = JSON.parse(event.data);
-      console.log(eventData);
 
       let parsedTrade = eventData.data[0];
 
