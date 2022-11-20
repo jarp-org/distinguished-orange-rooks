@@ -23,7 +23,7 @@ const options = {
       italic: false,
     },
     viewWindowMode: "pretty",
-    viewWindow: { min: 16500, max: 16800 },
+    viewWindow: { min: 16500, max: 16800 }, //todo fix this
   },
   colors: ["#ff6600"],
   title: "Trade Volume",

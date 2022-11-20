@@ -1,5 +1,5 @@
-import BubbleChart from "./charts/BubbleChart";
-import Controller from "./Controller";
+import BubbleChart from "../charts/BubbleChart";
+import Controller from "../Controller";
 
 const ChartController = () => {
   return (
