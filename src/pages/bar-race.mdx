@@ -1,0 +1,8 @@
+---
+layout: ../layouts/Layout.astro
+title: "Demo bubble Chart"
+---
+
+import BarChart from "../components/charts/BarChart.tsx";
+
+<BarChart tokens={["BTCUSDT", "ETHUSDT"]} client:load />
