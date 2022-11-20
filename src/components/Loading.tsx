@@ -2,8 +2,8 @@ import type { FC } from "react";
 
 let Loading: FC = () => {
   return (
-    <div>
-      <img src="/DORloading.gif" />
+    <div className='flex justify-center'>
+      <img src='/DORloading.gif' />
     </div>
   );
 };
