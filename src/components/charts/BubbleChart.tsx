@@ -1,11 +1,7 @@
-import { FC, useEffect, useState } from "react";
+import { FC, useContext, useEffect, useState } from "react";
 import { Chart } from "react-google-charts";
-import useExchange from "../../hooks/useExchange";
+import { tokenContext } from "../Controller";
 import Loading from "../Loading";
-
-interface props {
-  tokens: string[];
-}
 
 const options = {
   colorAxis: { legend: { position: "none" } },
@@ -40,19 +36,26 @@ const buildRow = (newData: trade): (string | number)[] => {
   return newRow;
 };
 
-const BubbleChart: FC<props> = ({ tokens }) => {
-  const currData = useExchange(tokens);
+const BubbleChart: FC = () => {
+  let { subscription: currData, tokens } = useContext(tokenContext);
   const [liveData, setLiveData] = useState<(string | number)[][]>([]);
 
-  let loading = tokens.some((t) => currData[t].time === 0);
+  let [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (loading) return;
+    setLoading(true);
+  }, [tokens]);
+
+  useEffect(() => {
+    if (!currData[tokens[0]]?.time) return; //escape for corrupt data
+
     let temp: (string | number)[][] = [];
 
     tokens.forEach((token) => {
       temp.push(buildRow(currData[token]));
     });
+
+    if (loading) setLoading(tokens.some((t) => currData[t].time === 0));
 
     setLiveData((prev) => {
       return [...prev, ...temp];
@@ -65,9 +68,9 @@ const BubbleChart: FC<props> = ({ tokens }) => {
     <Loading />
   ) : (
     <Chart
-      chartType='BubbleChart'
-      width='100%'
-      height='400px'
+      chartType="BubbleChart"
+      width="100%"
+      height="400px"
       data={[["ID", "Time", "Price", "Token", "Quantity"], ...liveData]}
       options={options}
     />

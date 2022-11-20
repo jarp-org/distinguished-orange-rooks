@@ -1,6 +1,6 @@
-import { FC, useState, useEffect } from "react";
+import { FC, useState, useEffect, useContext } from "react";
 import { Chart } from "react-google-charts";
-import useExchange from "../../hooks/useExchange";
+import { tokenContext } from "../Controller";
 import Loading from "../Loading";
 
 const options = {
@@ -27,31 +27,28 @@ const options = {
   legend: { position: "none" },
 };
 
-interface props {
-  tokens: string[];
-}
+const LineChart: FC = () => {
+  let { subscription: currData, tokens } = useContext(tokenContext);
 
-const LineChart: FC<props> = ({ tokens }) => {
-  const currData = useExchange(tokens);
+  let [liveData, setLiveData] = useState<(string | number)[][]>([]);
 
-  const [liveData, setLiveData] = useState<(string | number)[][]>([]);
-
-  let loading = tokens.some((t) => currData[t].time === 0);
+  let [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    setLoading(true);
+  }, [tokens]);
+
+  useEffect(() => {
+    if (!currData[tokens[0]]?.time) return; //escape for corrupt data
+
     let d = new Date(currData[tokens[0]].time);
     const temp = [d.toLocaleTimeString(), ...tokens.map(() => 0)];
-
-    if (loading) {
-      console.log("from effect", currData);
-      return;
-    }
 
     tokens.forEach((token) => {
       temp[tokens.indexOf(token) + 1] = currData[token].price;
     });
 
-    console.log(liveData);
+    if (loading) setLoading(tokens.some((t) => currData[t].time === 0));
 
     setLiveData((prev) => {
       if (prev.length >= 50) {
@@ -65,9 +62,9 @@ const LineChart: FC<props> = ({ tokens }) => {
     <Loading />
   ) : (
     <Chart
-      chartType='LineChart'
-      width='100%'
-      height='400px'
+      chartType="LineChart"
+      width="100%"
+      height="400px"
       data={[["time", ...tokens], ...liveData]}
       options={options}
     />
