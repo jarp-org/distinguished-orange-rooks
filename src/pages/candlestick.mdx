@@ -1,0 +1,10 @@
+---
+layout: ../layouts/Layout.astro
+title: "demo chart"
+---
+
+import CandleController from "../components/controllers/CandleController.tsx";
+
+<CandleController client:only />
+
+Please note: The candlestick requires some time to gather enough data (each candle represents 10s worth of trading, as the volume is quite low.).

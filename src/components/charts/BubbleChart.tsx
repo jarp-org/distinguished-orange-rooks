@@ -23,9 +23,9 @@ const BubbleChart: FC = () => {
 
   let usedToken = tokens[0];
 
-  const tokenBoundaries = {
-    BTCUSDT: { min: 1, max: 2 },
-    ETHUSDT: { min: 1, max: 2 },
+  const tokenBoundaries: { [token: string]: { min: number; max: number } } = {
+    BTCUSDT: { min: 16400, max: 17000 },
+    ETHUSDT: { min: 900, max: 1 },
     XRPUSDT: { min: 1, max: 2 },
   };
 
@@ -48,7 +48,10 @@ const BubbleChart: FC = () => {
         italic: false,
       },
       viewWindowMode: "pretty",
-      // viewWindow: { min: tokenBoundaries[usedToken].min, max: tokenBoundaries[usedToken].max }, //todo fix this
+      // viewWindow: {
+      //   min: tokenBoundaries[usedToken].min,
+      //   max: tokenBoundaries[usedToken].max,
+      // }, //todo fix this
     },
     colors: ["#ff6600"],
     title: "Trade Volume",
@@ -85,9 +88,9 @@ const BubbleChart: FC = () => {
   ) : (
     <>
       <Chart
-        chartType='BubbleChart'
-        width='100%'
-        height='400px'
+        chartType="BubbleChart"
+        width="100%"
+        height="400px"
         data={[["ID", "Time", "Price", "Token", "Quantity"], ...liveData]}
         options={options}
       />
