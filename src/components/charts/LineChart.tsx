@@ -4,9 +4,27 @@ import useExchange from "../../hooks/useExchange";
 import Loading from "../Loading";
 
 const options = {
-  title: "Company Performance",
   curveType: "function",
-  legend: { position: "bottom" },
+  hAxis: {
+    title: "Time",
+    slantedText: true,
+    titleTextStyle: {
+      fontSize: 16,
+      bold: true,
+      italic: false,
+    },
+  },
+  vAxis: {
+    title: "Price ($)",
+    titleTextStyle: {
+      fontSize: 16,
+      bold: true,
+      italic: false,
+    },
+  },
+  chartArea: { height: 265 },
+  colors: ["#ff6600"],
+  legend: { position: "none" },
 };
 
 interface props {
@@ -47,9 +65,9 @@ const LineChart: FC<props> = ({ tokens }) => {
     <Loading />
   ) : (
     <Chart
-      chartType="LineChart"
-      width="100%"
-      height="400px"
+      chartType='LineChart'
+      width='100%'
+      height='400px'
       data={[["time", ...tokens], ...liveData]}
       options={options}
     />
