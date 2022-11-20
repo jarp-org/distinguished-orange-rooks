@@ -30,8 +30,6 @@ let Candlestick: FC = () => {
   const [liveData, setLiveData] = useLiveFeed([], sliderVal, tokens);
   let [loading, setLoading] = useState(true);
 
-  let [check, setCheck] = useState();
-
   useEffect(() => {
     setTimeout(() => {
       console.log("interval");
@@ -43,12 +41,11 @@ let Candlestick: FC = () => {
         return [...prev, newCandle];
       });
     }, 10000);
-  }, [currList]);
+  }, [liveData]);
 
   useEffect(() => {
     if (!currData[tokens[0]]?.time) return; //escape for corrupt data
     setCurrList((prev) => [...prev, currData[tokens[0]]]);
-    console.log("curlist:", currList);
   }, [currData]);
 
   return loading ? (
