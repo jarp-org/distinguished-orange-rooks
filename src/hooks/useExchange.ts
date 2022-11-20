@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
 
-function useExchange(tokens: string[]): tokenSubscription {
-  //create state
-
+function getInitData(tokens: string[]): tokenSubscription {
   let initData: tokenSubscription = {};
   tokens.map((token) => {
     initData[token.toUpperCase()] = {
@@ -13,14 +11,23 @@ function useExchange(tokens: string[]): tokenSubscription {
       time: 0,
     };
   });
+  return initData;
+}
 
-  let [data, setData] = useState<tokenSubscription>(initData);
+function useExchange(tokens: string[]): tokenSubscription {
+  //create state
+  let [data, setData] = useState<tokenSubscription>(getInitData(tokens));
 
   // initialise websocket
   useEffect(() => {
     console.log("setting up websocket");
     const ws = new WebSocket("wss://stream.bybit.com/contract/usdt/public/v3");
-
+    // let ws = {
+    //   onopen: () => {},
+    //   onmessage: (e: any) => {},
+    //   send: (str: string) => {},
+    //   close: () => {},
+    // };
     // connect to websocket and subscribe to tokens
     ws.onopen = () => {
       console.log("socket opened");
@@ -54,7 +61,12 @@ function useExchange(tokens: string[]): tokenSubscription {
         return newData;
       });
     };
-  }, []);
+
+    return () => {
+      ws.close();
+      setData(getInitData(tokens));
+    };
+  }, [tokens]);
 
   return data;
 }
