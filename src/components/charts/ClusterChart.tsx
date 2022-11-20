@@ -1,8 +1,8 @@
 import * as Highcharts from "highcharts";
 import HC_more from "highcharts/highcharts-more";
 
-import useExchange from "../hooks/useExchange";
-import bubbleData from "../hooks/bubbleData";
+import useExchange from "../../hooks/useExchange";
+import bubbleData from "../../hooks/bubbleData";
 import { FC, useEffect, useState } from "react";
 import HighchartsReact from "highcharts-react-official";
 
