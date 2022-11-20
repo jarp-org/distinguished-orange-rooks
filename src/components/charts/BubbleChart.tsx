@@ -3,16 +3,33 @@ import { Chart } from "react-google-charts";
 import useExchange from "../../hooks/useExchange";
 import Loading from "../Loading";
 
-const options = {
-  title: "Another Chart",
-  colorAxis: { legend: { position: "none" } },
-  hAxis: { title: "Time" },
-  vAxis: { title: "Price" },
-};
-
 interface props {
   tokens: string[];
 }
+
+const options = {
+  colorAxis: { legend: { position: "none" } },
+  hAxis: {
+    title: "Time",
+    slantedText: true,
+    titleTextStyle: {
+      fontSize: 16,
+      bold: true,
+      italic: false,
+    },
+  },
+  vAxis: {
+    title: "Price ($)",
+    titleTextStyle: {
+      fontSize: 16,
+      bold: true,
+      italic: false,
+    },
+    viewWindowMode: "pretty",
+  },
+  colors: ["#ff6600"],
+  legend: { position: "none" },
+};
 
 const buildRow = (newData: trade): (string | number)[] => {
   const newRow: (string | number)[] = ["", 0, 0, "", 0];
@@ -48,9 +65,9 @@ const BubbleChart: FC<props> = ({ tokens }) => {
     <Loading />
   ) : (
     <Chart
-      chartType="BubbleChart"
-      width="100%"
-      height="400px"
+      chartType='BubbleChart'
+      width='100%'
+      height='400px'
       data={[["ID", "Time", "Price", "Token", "Quantity"], ...liveData]}
       options={options}
     />

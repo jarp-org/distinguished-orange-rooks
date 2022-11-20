@@ -7,14 +7,14 @@ const ChartController = () => {
 
   return (
     <>
-      <div className="mt-10 mx-24">
+      <div className='mt-10 mx-24'>
         <Dropdown
           state={option}
           setState={setOption}
-          tokens={["BTCUSDT", "ETHUSDT"]}
+          tokens={["BTCUSDT", "ETHUSDT", "XRPUSDT"]}
         />
       </div>
-      <div className="mt-10">
+      <div className='mt-10'>
         {/* {option !== "Select a token" && <LineChart tokens={[option]} />} */}
         {option !== "Select a token" && <LineChart tokens={[option]} />}
       </div>
