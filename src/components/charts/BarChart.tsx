@@ -16,7 +16,7 @@ export const headers = [
 ];
 
 export const options = {
-  title: "Prices of the top 10 cryptocurrencies",
+  title: "Will ETH pass BTC?",
   width: 1200,
   height: 500,
   bar: { groupWidth: "95%" },

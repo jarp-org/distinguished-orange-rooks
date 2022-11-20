@@ -25,6 +25,7 @@ const options = {
   chartArea: { height: 265 },
   colors: ["#ff6600"],
   legend: { position: "none" },
+  title: "Price Over Time",
 };
 
 interface props {
@@ -65,9 +66,9 @@ const LineChart: FC<props> = ({ tokens }) => {
     <Loading />
   ) : (
     <Chart
-      chartType='LineChart'
-      width='100%'
-      height='400px'
+      chartType="LineChart"
+      width="100%"
+      height="400px"
       data={[["time", ...tokens], ...liveData]}
       options={options}
     />

@@ -28,6 +28,7 @@ const options = {
     viewWindowMode: "pretty",
   },
   colors: ["#ff6600"],
+  title: "Trade Volume",
   legend: { position: "none" },
 };
 
@@ -65,9 +66,9 @@ const BubbleChart: FC<props> = ({ tokens }) => {
     <Loading />
   ) : (
     <Chart
-      chartType='BubbleChart'
-      width='100%'
-      height='400px'
+      chartType="BubbleChart"
+      width="100%"
+      height="400px"
       data={[["ID", "Time", "Price", "Token", "Quantity"], ...liveData]}
       options={options}
     />
