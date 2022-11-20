@@ -1,4 +1,4 @@
-import SampleBubbles from "./BubbleChart44";
+import BubbleChart from "./BubbleChart";
 import Dropdown from "./Dropdown";
 import useQueryParam from "../hooks/useQueryParams";
 
@@ -16,7 +16,7 @@ const ChartController = () => {
       </div>
       <div className='mt-10'>
         {/* {option !== "Select a token" && <LineChart tokens={[option]} />} */}
-        {option !== "Select a token" && <SampleBubbles tokens={[option]} />}
+        {option !== "Select a token" && <BubbleChart tokens={[option]} />}
       </div>
     </>
   );
