@@ -1,4 +1,9 @@
 interface d3Data {
-    id: string;
-    value: number;
+  name: string;
+  value: number;
+}
+
+interface clusterData {
+  name: string;
+  data: d3Data[];
 }
