@@ -1,6 +1,7 @@
 import { FC, useEffect, useState } from "react";
 import { Chart } from "react-google-charts";
-import useExchange from "../hooks/useExchange";
+import useExchange from "../../hooks/useExchange";
+import Loading from "../Loading";
 
 const options = {
   title: "Another Chart",
@@ -43,11 +44,13 @@ const BubbleChart: FC<props> = ({ tokens }) => {
     console.log(liveData);
   }, [currData]);
 
-  return (
+  return loading ? (
+    <Loading />
+  ) : (
     <Chart
-      chartType='BubbleChart'
-      width='100%'
-      height='400px'
+      chartType="BubbleChart"
+      width="100%"
+      height="400px"
       data={[["ID", "Time", "Price", "Token", "Quantity"], ...liveData]}
       options={options}
     />
