@@ -9,8 +9,8 @@ const ChartController = () => {
   return (
     <>
       <div className='mt-10'>
-        {/* {option !== "Select a token" && <LineChart tokens={[option]} />} */}
-        {option !== "Select a token" && <SampleBubbles tokens={[option]} />}
+        {option !== "Select a token" && <LineChart tokens={[option]} />}
+        {/* {option !== "Select a token" && <SampleBubbles tokens={[option]} />} */}
       </div>
       <div className='mt-10 mx-24'>
         <Dropdown

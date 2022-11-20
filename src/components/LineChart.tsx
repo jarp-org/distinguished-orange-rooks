@@ -12,10 +12,6 @@ interface props {
   tokens: string[];
 }
 
-const argMax = (obj: tokenSubscription) => {
-  Object.values(obj).reduce((a, r) => (a.time > r.time ? a : r));
-};
-
 const LineChart: FC<props> = ({ tokens }) => {
   const currData = useExchange(tokens);
 
@@ -39,6 +35,9 @@ const LineChart: FC<props> = ({ tokens }) => {
     console.log(liveData);
 
     setLiveData((prev) => {
+      if (prev.length >= 50) {
+        prev.splice(0, 1);
+      }
       return [...prev, temp];
     });
   }, [currData]);
