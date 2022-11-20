@@ -47,17 +47,21 @@ const BarChart: FC<props> = ({ tokens }) => {
 
   useEffect(() => {}, [currData]);
 
-  return loading ? (
-    <Loading />
-  ) : (
-    <Chart
-      chartType="BarChart"
-      width="100%"
-      height="400px"
-      data={[headers, ...liveData]}
-      options={options}
-      className="flex justify-center"
-    />
+  return (
+    <div className='mt-20'>
+      {loading ? (
+        <Loading />
+      ) : (
+        <Chart
+          chartType='BarChart'
+          width='100%'
+          height='400px'
+          data={[headers, ...liveData]}
+          options={options}
+          className='flex justify-center'
+        />
+      )}
+    </div>
   );
 };
 
