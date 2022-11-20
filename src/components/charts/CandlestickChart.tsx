@@ -55,15 +55,15 @@ let Candlestick: FC = () => {
       ) : (
         <>
           <Chart
-            chartType='CandlestickChart'
-            width='100%'
-            height='400px'
+            chartType="CandlestickChart"
+            width="100%"
+            height="400px"
             data={[["Time", "min", "open", "close", "max"], ...liveData]}
             options={options}
           />
         </>
       )}
-      <div className='mt-10 text-center font-medium text-gray-800'>
+      <div className="my-10 text-center font-medium text-gray-800">
         Please note: The candlestick requires some time to gather enough data
         (each candle represents 10s worth of trading, as the volume is quite
         low.).
