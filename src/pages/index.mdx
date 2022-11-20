@@ -2,13 +2,12 @@
 layout: ../layouts/Layout.astro
 ---
 
-import LineChartController from "../components/LineChartController.tsx";
+import LineChartController from "../components/controllers/LineChartController.tsx";
 import BarChart from "../components/charts/BarChart.tsx";
-import BubbleChartController from "../components/BubbleChartController.tsx";
+import BubbleChartController from "../components/controllers/BubbleChartController.tsx";
 
 <BubbleChartController client:only />
 
 <LineChartController client:only />
 
 <BarChart tokens={["BTCUSDT", "ETHUSDT"]} client:load />
-
