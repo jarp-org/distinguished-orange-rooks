@@ -27,6 +27,7 @@ const options = {
       italic: false,
     },
     viewWindowMode: "pretty",
+    viewWindow: { min: 16500, max: 16800 },
   },
   colors: ["#ff6600"],
   legend: { position: "none" },
@@ -46,6 +47,8 @@ const BubbleChart: FC<props> = ({ tokens }) => {
   const currData = useExchange(tokens);
   const [sliderVal, setSliderVal] = useState(35);
   const [liveData, setLiveData] = useLiveFeed([], sliderVal);
+  const [minVal, setMinVal] = useState();
+  const [maxVal, setMaxVal] = useState();
 
   let loading = tokens.some((t) => currData[t].time === 0);
 
