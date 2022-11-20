@@ -16,6 +16,7 @@ function useQueryParam(
   initValue: string = ""
 ): [string, (newValue: string) => void] {
   let first = getQueryParam(key) || initValue;
+  if (!getQueryParam(key)) updateQueryParam(key, initValue);
   let [value, setValue] = useState<string>(first);
 
   let update = useCallback(
