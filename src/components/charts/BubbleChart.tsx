@@ -46,7 +46,8 @@ const BubbleChart: FC = () => {
     tokens,
     maxFeedSize,
   } = useContext(tokenContext);
-  const [liveData, setLiveData] = useLiveFeed([], maxFeedSize);
+  const [liveData, setLiveData] = useLiveFeed([], maxFeedSize, tokens);
+
   const [minVal, setMinVal] = useState(currData[tokens[0]].price * 0.75);
   const [maxVal, setMaxVal] = useState(currData[tokens[0]].price * 1.5);
 

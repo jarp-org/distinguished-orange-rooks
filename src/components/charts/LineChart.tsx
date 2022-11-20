@@ -35,7 +35,7 @@ const LineChart: FC = () => {
 
   let [loading, setLoading] = useState(true);
   const [sliderVal, setSliderVal] = useState(35);
-  const [liveData, setLiveData] = useLiveFeed([], sliderVal);
+  const [liveData, setLiveData] = useLiveFeed([], sliderVal, tokens);
 
   useEffect(() => {
     setLoading(true);
