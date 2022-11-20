@@ -25,11 +25,14 @@ let Controller: FC<props> = ({ children }) => {
 
   return (
     <h3>
-      <Dropdown
-        state={token}
-        setState={setToken}
-        tokens={["BTCUSDT", "ETHUSDT", "XRPUSDT"]}
-      />
+      <div className="mx-24 my-6">
+        <Dropdown
+          state={token}
+          setState={setToken}
+          tokens={["BTCUSDT", "ETHUSDT", "XRPUSDT"]}
+        />
+      </div>
+
       <tokenContext.Provider value={{ tokens: tokens, subscription: data }}>
         {children}
       </tokenContext.Provider>
