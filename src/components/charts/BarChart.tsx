@@ -35,7 +35,7 @@ const BarChart: FC<props> = ({ tokens }) => {
   const [liveData, setLiveData] = useState<(string | number | null)[][]>([]);
 
   useEffect(() => {
-    let colors = ["red", "blue"];
+    let colors = ["#ffa500", "#005aff"];
     let temp: (string | number | null)[][] = [];
     Object.values(currData).map((element) => {
       let color = colors[tokens.indexOf(element.symbol)];
