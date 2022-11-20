@@ -1,5 +1,5 @@
-import LineChart from "./charts/LineChart";
-import Controller from "./Controller";
+import LineChart from "../charts/LineChart";
+import Controller from "../Controller";
 
 const ChartController = () => {
   return (
