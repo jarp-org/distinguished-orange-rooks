@@ -53,10 +53,10 @@ const BubbleChart: FC = () => {
         italic: false,
       },
       viewWindowMode: "pretty",
-      viewWindow: {
-        min: tokenBoundaries("min", usedToken),
-        max: tokenBoundaries("max", usedToken),
-      },
+      // viewWindow: {
+      //   min: tokenBoundaries("min", usedToken),
+      //   max: tokenBoundaries("max", usedToken),
+      // },
     },
     colors: ["#ff6600"],
     title: "Trade Volume",
