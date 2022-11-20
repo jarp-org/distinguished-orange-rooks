@@ -27,6 +27,7 @@ const options = {
   chartArea: { height: 265 },
   colors: ["#ff6600"],
   legend: { position: "none" },
+  title: "Price Over Time",
 };
 
 const LineChart: FC = () => {

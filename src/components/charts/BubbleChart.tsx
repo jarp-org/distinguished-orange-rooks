@@ -26,6 +26,7 @@ const options = {
     viewWindow: { min: 16500, max: 16800 }, //todo fix this
   },
   colors: ["#ff6600"],
+  title: "Trade Volume",
   legend: { position: "none" },
   height: 400,
 };
