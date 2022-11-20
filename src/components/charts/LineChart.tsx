@@ -31,11 +31,13 @@ const options = {
 };
 
 const LineChart: FC = () => {
-  let { subscription: currData, tokens } = useContext(tokenContext);
-
+  let {
+    subscription: currData,
+    tokens,
+    maxFeedSize,
+  } = useContext(tokenContext);
   let [loading, setLoading] = useState(true);
-  const [sliderVal, setSliderVal] = useState(35);
-  const [liveData, setLiveData] = useLiveFeed([], sliderVal, tokens);
+  const [liveData, setLiveData] = useLiveFeed([], maxFeedSize, tokens);
 
   useEffect(() => {
     setLoading(true);

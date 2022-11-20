@@ -14,6 +14,21 @@ const buildRow = (newData: trade): (string | number)[] => {
 };
 
 const BubbleChart: FC = () => {
+  let {
+    subscription: currData,
+    tokens,
+    maxFeedSize,
+  } = useContext(tokenContext);
+  const [liveData, setLiveData] = useLiveFeed([], maxFeedSize, tokens);
+
+  let usedToken = tokens[0];
+
+  const tokenBoundaries = {
+    BTCUSDT: { min: 1, max: 2 },
+    ETHUSDT: { min: 1, max: 2 },
+    XRPUSDT: { min: 1, max: 2 },
+  };
+
   const options = {
     colorAxis: { legend: { position: "none" } },
     hAxis: {
@@ -33,23 +48,13 @@ const BubbleChart: FC = () => {
         italic: false,
       },
       viewWindowMode: "pretty",
-      viewWindow: { min: 16500, max: 16800 }, //todo fix this
+      // viewWindow: { min: tokenBoundaries[usedToken].min, max: tokenBoundaries[usedToken].max }, //todo fix this
     },
     colors: ["#ff6600"],
     title: "Trade Volume",
     legend: { position: "none" },
     height: 400,
   };
-
-  let {
-    subscription: currData,
-    tokens,
-    maxFeedSize,
-  } = useContext(tokenContext);
-  const [liveData, setLiveData] = useLiveFeed([], maxFeedSize, tokens);
-
-  const [minVal, setMinVal] = useState(currData[tokens[0]].price * 0.75);
-  const [maxVal, setMaxVal] = useState(currData[tokens[0]].price * 1.5);
 
   let [loading, setLoading] = useState(true);
 
@@ -64,9 +69,6 @@ const BubbleChart: FC = () => {
 
     tokens.forEach((token) => {
       temp.push(buildRow(currData[token]));
-      let currPrice = currData[token].price;
-      if (currPrice < minVal) setMinVal(currPrice);
-      if (currPrice > maxVal) setMaxVal(currPrice);
     });
 
     if (loading) setLoading(tokens.some((t) => currData[t].time === 0));
