@@ -56,6 +56,7 @@ const BarChart: FC<props> = ({ tokens }) => {
       height="400px"
       data={[headers, ...liveData]}
       options={options}
+      className="flex justify-center"
     />
   );
 };
