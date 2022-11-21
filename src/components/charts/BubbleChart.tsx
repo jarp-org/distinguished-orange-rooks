@@ -13,6 +13,32 @@ const buildRow = (newData: trade): (string | number)[] => {
   return newRow;
 };
 
+const options = {
+  colorAxis: { legend: { position: "none" } },
+  hAxis: {
+    title: "Time",
+    slantedText: true,
+    titleTextStyle: {
+      fontSize: 16,
+      bold: true,
+      italic: false,
+    },
+  },
+  vAxis: {
+    title: "Price ($)",
+    titleTextStyle: {
+      fontSize: 16,
+      bold: true,
+      italic: false,
+    },
+    viewWindowMode: "pretty",
+  },
+  colors: ["#ff6600"],
+  title: "Trade Volume",
+  legend: { position: "none" },
+  height: 400,
+};
+
 const BubbleChart: FC = () => {
   let {
     subscription: currData,
@@ -20,49 +46,6 @@ const BubbleChart: FC = () => {
     maxFeedSize,
   } = useContext(tokenContext);
   const [liveData, setLiveData] = useLiveFeed([], maxFeedSize, tokens);
-
-  let usedToken = tokens[0];
-
-  const tokenBoundaries = (type: "min" | "max", token: string): number => {
-    let data: { [token: string]: { min: number; max: number } } = {
-      BTCUSDT: { min: 16400, max: 17000 },
-      ETHUSDT: { min: 900, max: 1 },
-      XRPUSDT: { min: 1, max: 2 },
-    };
-
-    if (data[token]) return data[token][type];
-    else return type === "min" ? 1 : 2;
-  };
-
-  const options = {
-    colorAxis: { legend: { position: "none" } },
-    hAxis: {
-      title: "Time",
-      slantedText: true,
-      titleTextStyle: {
-        fontSize: 16,
-        bold: true,
-        italic: false,
-      },
-    },
-    vAxis: {
-      title: "Price ($)",
-      titleTextStyle: {
-        fontSize: 16,
-        bold: true,
-        italic: false,
-      },
-      viewWindowMode: "pretty",
-      // viewWindow: {
-      //   min: tokenBoundaries("min", usedToken),
-      //   max: tokenBoundaries("max", usedToken),
-      // },
-    },
-    colors: ["#ff6600"],
-    title: "Trade Volume",
-    legend: { position: "none" },
-    height: 400,
-  };
 
   let [loading, setLoading] = useState(true);
 
