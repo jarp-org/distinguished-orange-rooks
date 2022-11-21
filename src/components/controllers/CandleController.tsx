@@ -4,7 +4,7 @@ import Controller from "../Controller";
 const ChartController = () => {
   return (
     <Controller>
-      <Candlestick />
+      <Candlestick candleSize={10000} />
     </Controller>
   );
 };
