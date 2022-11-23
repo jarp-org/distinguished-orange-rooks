@@ -18,9 +18,6 @@ const Dropdown: FC<props> = ({ tokens, state, setState }) => {
 
   return (
     <div className="grid gap-2 relative">
-      {/* position: absolute;
-    transform: translate(0,80px);
-    z-index: 100; */}
       <div
         className={`p-6 w-80 h-max flex justify-between 
         rounded-lg bg-slate-800 hover:bg-slate-600 cursor-pointer`}

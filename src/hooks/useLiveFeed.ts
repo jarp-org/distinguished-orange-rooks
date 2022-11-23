@@ -20,7 +20,7 @@ const useLiveFeed = (
         return prev;
       });
     }
-  }, [maxViewSize]);
+  }, [maxViewSize, liveData]);
 
   useEffect(() => {
     setLiveData(initial);
