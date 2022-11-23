@@ -26,7 +26,7 @@ const BubbleChart: FC = () => {
   const tokenBoundaries = (type: "min" | "max", token: string): number => {
     let data: { [token: string]: { min: number; max: number } } = {
       BTCUSDT: { min: 16400, max: 17000 },
-      ETHUSDT: { min: 900, max: 1 },
+      ETHUSDT: { min: 900, max: 1000 },
       XRPUSDT: { min: 1, max: 2 },
     };
 
@@ -93,9 +93,9 @@ const BubbleChart: FC = () => {
   ) : (
     <>
       <Chart
-        chartType="BubbleChart"
-        width="100%"
-        height="400px"
+        chartType='BubbleChart'
+        width='100%'
+        height='400px'
         data={[["ID", "Time", "Price", "Token", "Quantity"], ...liveData]}
         options={options}
       />
